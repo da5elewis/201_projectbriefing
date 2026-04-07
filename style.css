@@ -248,6 +248,167 @@ body {
   transform: translate(2px, -2px);
 }
 
+/* ─── Add link section ──────────────────────────────── */
+
+.add-link-section {
+  margin-top: 0.75rem;
+}
+
+.add-link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-link);
+  border: 1px dashed var(--link-border-hover);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.add-link-btn:hover {
+  background: var(--link-bg-hover);
+  color: var(--text-primary);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.add-link-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.add-link-btn.is-hidden {
+  display: none;
+}
+
+/* ─── Add link form ─────────────────────────────────── */
+
+.add-link-form {
+  display: none;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-link);
+  border: 1px solid var(--link-border-hover);
+  background: var(--link-bg);
+}
+
+.add-link-form.is-open {
+  display: flex;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid var(--link-border);
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.form-error {
+  font-size: 0.8125rem;
+  color: #f87171;
+  min-height: 1.2em;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.form-submit,
+.form-cancel {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  border: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.form-submit {
+  background: var(--accent);
+  color: #fff;
+}
+
+.form-submit:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.form-cancel {
+  background: var(--link-bg-hover);
+  color: var(--text-secondary);
+}
+
+.form-cancel:hover {
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.form-submit:focus-visible,
+.form-cancel:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ─── New card entrance animation ──────────────────── */
+
+.link-card--new {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.22s ease;
+}
+
+.link-card--new.link-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ─── Responsive ────────────────────────────────────── */
 
 @media (max-width: 400px) {

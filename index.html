@@ -83,6 +83,31 @@
         </a>
 
       </nav>
+
+      <!-- Add link ─────────────────────────────────────── -->
+      <div class="add-link-section">
+        <button class="add-link-btn" id="addLinkBtn" aria-expanded="false" aria-controls="addLinkForm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add link
+        </button>
+
+        <form class="add-link-form" id="addLinkForm" aria-hidden="true" novalidate>
+          <div class="form-field">
+            <label class="form-label" for="newTitle">Title</label>
+            <input class="form-input" id="newTitle" type="text" placeholder="Article title" autocomplete="off" required>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="newUrl">URL</label>
+            <input class="form-input" id="newUrl" type="url" placeholder="https://" autocomplete="off" required>
+          </div>
+          <p class="form-error" id="formError" role="alert" aria-live="polite"></p>
+          <div class="form-actions">
+            <button type="submit" class="form-submit">Add to list</button>
+            <button type="button" class="form-cancel" id="cancelBtn">Cancel</button>
+          </div>
+        </form>
+      </div>
+
     </div>
   </main>
 

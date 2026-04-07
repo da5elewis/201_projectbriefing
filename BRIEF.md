@@ -19,6 +19,12 @@ Display these as stacked buttons, full-width within the card:
 - How Successful Sales Teams Are Embracing Agentic AI (https://hbr.org/2025/09/how-successful-sales-teams-are-embracing-agentic-ai)
 - From Headlines to Digests: How Agents Personalize the Firehose (https://hackernoon.com/from-headlines-to-digests-how-agents-personalize-the-firehose)
 
+## Functionality
+Create a feature for adding a new link to the list.
+- Create a button at the bottom of the list to create a new link
+- Base the form on the existing structure to add a title and the link
+- After a new link is submitted, add the new link to the bottom of the list
+
 ## Nice to have
 - Link cards have a small (120px-120px) thumbnail image
 - Link buttons have icons (use simple SVG or emoji)
