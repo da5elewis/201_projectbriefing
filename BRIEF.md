@@ -24,6 +24,7 @@ Create a feature for adding a new link to the list.
 - Create a button at the bottom of the list to create a new link
 - Base the form on the existing structure to add a title and the link
 - After a new link is submitted, add the new link to the bottom of the list
+- Update files so the new link and updated link list is saved across sessions
 
 ## Nice to have
 - Link cards have a small (120px-120px) thumbnail image

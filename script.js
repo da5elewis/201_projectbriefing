@@ -17,6 +17,8 @@
   });
 
   // ── Add link feature ────────────────────────────────────
+  var STORAGE_KEY = 'ai-resources-links';
+
   var addBtn    = document.getElementById('addLinkBtn');
   var form      = document.getElementById('addLinkForm');
   var cancelBtn = document.getElementById('cancelBtn');
@@ -56,6 +58,32 @@
   function seedFromUrl(url) {
     // Derive a short alphanumeric seed from the URL for a stable picsum image
     return url.replace(/[^a-z0-9]/gi, '').slice(0, 16) || 'newlink';
+  }
+
+  // ── localStorage persistence ─────────────────────────────
+  function loadSavedLinks() {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var links;
+    try { links = JSON.parse(raw); } catch (_) { return; }
+    if (!Array.isArray(links)) return;
+    links.forEach(function (item) {
+      if (item && typeof item.title === 'string' && typeof item.url === 'string') {
+        var card = createLinkCard(item.title, item.url);
+        card.classList.add('link-card--visible'); // no entrance animation on load
+        linksList.appendChild(card);
+      }
+    });
+  }
+
+  function saveLinks() {
+    var cards = linksList.querySelectorAll('a.link-card.link-card--new');
+    var links = [];
+    cards.forEach(function (card) {
+      var titleEl = card.querySelector('.link-title');
+      links.push({ title: titleEl ? titleEl.textContent : '', url: card.href });
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
   }
 
   function createLinkCard(title, url) {
@@ -127,8 +155,12 @@
       card.classList.add('link-card--visible');
     });
 
+    saveLinks();
     closeForm();
     card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
+
+  // Restore any previously saved links on page load
+  loadSavedLinks();
 
 }());
