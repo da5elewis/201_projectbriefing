@@ -70,14 +70,14 @@
     links.forEach(function (item) {
       if (item && typeof item.title === 'string' && typeof item.url === 'string') {
         var card = createLinkCard(item.title, item.url);
-        card.classList.add('link-card--visible'); // no entrance animation on load
         linksList.appendChild(card);
+        card.classList.remove('link-card--new'); // show instantly, no entrance animation
       }
     });
   }
 
   function saveLinks() {
-    var cards = linksList.querySelectorAll('a.link-card.link-card--new');
+    var cards = linksList.querySelectorAll('a.link-card');
     var links = [];
     cards.forEach(function (card) {
       var titleEl = card.querySelector('.link-title');
@@ -160,7 +160,27 @@
     card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
 
-  // Restore any previously saved links on page load
+  // Seed default links on first load if localStorage is empty
+  var DEFAULT_LINKS = [
+    {
+      title: 'What AI Can Teach Us About Designing Better KPIs',
+      url:   'https://sloanreview.mit.edu/article/what-ai-can-teach-us-about-designing-better-kpis'
+    },
+    {
+      title: 'How Successful Sales Teams Are Embracing Agentic AI',
+      url:   'https://hbr.org/2025/09/how-successful-sales-teams-are-embracing-agentic-ai'
+    },
+    {
+      title: 'From Headlines to Digests: How Agents Personalize the Firehose',
+      url:   'https://hackernoon.com/from-headlines-to-digests-how-agents-personalize-the-firehose'
+    }
+  ];
+
+  if (!localStorage.getItem(STORAGE_KEY)) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_LINKS));
+  }
+
+  // Restore saved links on page load
   loadSavedLinks();
 
 }());
