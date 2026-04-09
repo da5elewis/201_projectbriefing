@@ -176,9 +176,23 @@
     }
   ];
 
-  if (!localStorage.getItem(STORAGE_KEY)) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_LINKS));
-  }
+  // Ensure defaults are present regardless of prior localStorage state.
+  // Only injects a default if its URL isn't already saved (idempotent).
+  (function seedDefaults() {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var existing = [];
+    if (raw) {
+      try { existing = JSON.parse(raw); } catch (_) {}
+      if (!Array.isArray(existing)) existing = [];
+    }
+    var existingUrls = existing.map(function (item) { return item.url; });
+    var missing = DEFAULT_LINKS.filter(function (item) {
+      return existingUrls.indexOf(item.url) === -1;
+    });
+    if (missing.length > 0) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(missing.concat(existing)));
+    }
+  }());
 
   // Restore saved links on page load
   loadSavedLinks();
